@@ -9,6 +9,7 @@ const LoggedInRoutes = () => <><Route exact path="/" component={Feed}></Route></
 
 const LoggedOutRoutes = () => <><Route exact path="/" component={Auth}></Route></>
 
+
 const AppRouter = ({isLoggedIn}) => (
     <Router>
         <Switch>
