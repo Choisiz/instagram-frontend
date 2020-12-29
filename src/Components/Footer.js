@@ -61,6 +61,6 @@ export default() => (
                 <Link href="#">language</Link>
             </ListItem>
         </List>
-        <Copyright>Instagram{new Date().getFullYear()}&copy;</Copyright>
+        <Copyright>Instagram {new Date().getFullYear()}&copy;</Copyright>
     </Footer>
 );
