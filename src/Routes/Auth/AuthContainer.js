@@ -11,6 +11,7 @@ export default () => {
     const firstName = useInput("");
     const lastName = useInput("");
     const email = useInput("");
+    const secret = useInput("");
 
     const [requestSecretMutation] =useMutation(LOG_IN, {
         variables: {email: email.value}
@@ -36,6 +37,7 @@ export default () => {
                         setTimeout(()=> setAction("signUp"),2000);
                     }else{ //requestSecret 있다면
                         toast.success("이메일을 확인해주세요");
+                        setAction("confirm");
                     }
                 }catch{
                     toast.error("다시 시도해주세요");
@@ -50,7 +52,7 @@ export default () => {
                 userName.value !=="" &&
                 firstName.value !=="" &&
                 lastName.value !==""
-                ){
+                ){ //회원가입 양식을 모두 작성했다면
                     try{
                         const {data: {createAcount }} = await createAcountMutation();
                         if(!createAcount){
@@ -76,6 +78,7 @@ export default () => {
             firstName={firstName}
             lastName={lastName}
             email={email}
+            secret={secret}
             onSubmit={onSubmit}/>
     );
 };
