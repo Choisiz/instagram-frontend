@@ -62,7 +62,7 @@ export default ({
                         <Button text={"Login"}/>
                     </form>
                 )}
-                {action === "sighUp" && (
+                {action === "signUp" && (
                     <form onSubmit={onSubmit}>
                         <Input placeholder = {"FirstName"} {...firstName} />
                         <Input placeholder = {"LastName"} {...lastName} />
@@ -78,19 +78,21 @@ export default ({
                     </form>
                 )}
             </Form>
-            <StateChanger>
+            {action !== "confirm" && (
+                <StateChanger>
                 { action === "Login" ? (
                     <>
-                        Don't have an account?{" "}
+                        Don't have an account? {" "}
                         <Link onClick={ () => setAction("signUp") }>Sign Up</Link>
                     </>
                     ) : (
                     <>
-                        Have an account?{" "}
+                        Have an account? {" "}
                         <Link onClick={ () => setAction("Login") }>Login</Link>
                     </>
                     )
                 }
             </StateChanger>
+            )}
         </Wrapper>
     ) 
