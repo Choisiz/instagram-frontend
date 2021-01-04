@@ -12,8 +12,9 @@ const Container = styled.input`
    font-size:12px;
 `;
 
-const Input = ({placeholder, required = true, value, onChange, type="text"}) => (
-    <Container 
+const Input = ({placeholder, required = true, value, onChange, type="text",className}) => (
+    <Container
+      className={className}
       placeholder={placeholder} 
       required={required} 
       value={value} 
