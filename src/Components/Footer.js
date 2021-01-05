@@ -24,7 +24,7 @@ const Copyright = styled.span `
    color: ${props => props.theme.darkGrayColor}
 `;
 
-export default () => (
+const Footers = () => (
     <Footer>
         <List>
             <ListItem>
@@ -64,3 +64,5 @@ export default () => (
         <Copyright>Instagram {new Date().getFullYear()}&copy;</Copyright>
     </Footer>
 );
+
+export default Footers;

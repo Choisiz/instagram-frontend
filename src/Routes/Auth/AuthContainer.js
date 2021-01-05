@@ -5,7 +5,7 @@ import {useMutation} from "@apollo/client";
 import {CONFIRM_SECRET, CREATE_ACCOUNT, LOCAL_LOG_IN, LOG_IN} from "./AuthQueries";
 import {toast} from "react-toastify";
 
-export default() => {
+const AuthContainer = () => {
     const [action, setAction] = useState("Login");
     const userName = useInput("");
     const firstName = useInput("");
@@ -107,3 +107,5 @@ export default() => {
             onSubmit={onSubmit}/>
     );
 };
+
+export default AuthContainer

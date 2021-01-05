@@ -1,1 +1,3 @@
-export default () => "Feed";
+const Feed = () => "Feed";
+
+export default Feed

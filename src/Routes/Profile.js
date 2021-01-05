@@ -1,1 +1,3 @@
-export default () => "Profile";
+const Profile = () => "Profile";
+
+export default Profile;

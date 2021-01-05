@@ -27,8 +27,8 @@ const HeaderWrapper = styled.div`
     justify-content: center;
     a{  
         font-family: 'Satisfy', cursive;
-        color : #231F20;
-        font-size: 23px;
+        color : #3A3637;
+        font-size: 29px;
         font-weight: 600;
     }
 `;

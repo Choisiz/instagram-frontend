@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import Input from "../../Components/input";
 import Button from "../../Components/Button";
@@ -44,7 +44,7 @@ const Form = styled(Box)`
     }
 `;
 
-export default ({
+const AuthPresenter = ({
     action,
     setAction,
     userName,
@@ -96,3 +96,5 @@ export default ({
             )}
         </Wrapper>
     ) 
+
+export default AuthPresenter;

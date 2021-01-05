@@ -1,1 +1,3 @@
-export default () => "Explore";
+const Explore = () => "Explore";
+
+export default Explore;

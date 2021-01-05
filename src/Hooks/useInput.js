@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default defaultValue => {
+const useInput = (defaultValue) => {
     const [value, setValue] = useState(defaultValue);
 
     const onChange = e => {
@@ -10,3 +10,5 @@ export default defaultValue => {
 
     return {value, onChange};
 };
+
+export default useInput;
