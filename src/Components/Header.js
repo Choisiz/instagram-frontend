@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import {gql} from "apollo-boost";
 import Input from "./input";
 import useInput from "../Hooks/useInput";
 import {Compass, HeartEmpty,User ,Comment, Home} from "./Icons";
+import { useQuery } from "@apollo/react-hooks";
 
 const Header = styled.header`
    width: 100%;
@@ -65,18 +67,34 @@ const HeaderLink =styled(Link)`
     
 `;
 
-export default () => {
-    const search = useInput();
+const ME = gql`
+    {
+        me {
+            user{
+                userName
+                }
+        }
+    }
+`;
+
+export default withRouter(({history}) => {
+    const search = useInput("");
+    const meQuery = useQuery(ME);
+    console.log(meQuery);
+    const onSearchSubmit = e => { //검색
+        e.preventDefault();
+        history.push(`/search?term=${search.value}`)
+    };
     return (
         <Header>
             <HeaderWrapper>
                 <HeaderColumn>
                     <Link to ="/">
-                    Instagram
+                        Instagram
                     </Link>
                 </HeaderColumn>
                 <HeaderColumn>
-                    <form>
+                    <form onSubmit={onSearchSubmit}>
                         <SearchInput {...search} placeholder="검색"/>
                     </form>
                 </HeaderColumn>
@@ -100,4 +118,4 @@ export default () => {
             </HeaderWrapper>
         </Header>
     )
-};
+});

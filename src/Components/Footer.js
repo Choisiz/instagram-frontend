@@ -24,7 +24,7 @@ const Copyright = styled.span `
    color: ${props => props.theme.darkGrayColor}
 `;
 
-export default() => (
+export default () => (
     <Footer>
         <List>
             <ListItem>
