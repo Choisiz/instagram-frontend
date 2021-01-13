@@ -1,4 +1,5 @@
 import React from "react";
+import {Helmet} from "react-helmet";
 import styled from "styled-components";
 import Input from "../../Components/input";
 import Button from "../../Components/Button";
@@ -57,25 +58,40 @@ const AuthPresenter = ({
         <Wrapper>
             <Form>
                 { action === "Login" && (
-                    <form onSubmit={onSubmit}> 
-                        <Input placeholder = {"email"} {...email} type="email" />
-                        <Button text={"Login"}/>
-                    </form>
+                    <>
+                        <Helmet>
+                            <title>Log In | Instagram</title>
+                         </Helmet>
+                        <form onSubmit={onSubmit}> 
+                            <Input placeholder = {"email"} {...email} type="email" />
+                            <Button text={"Login"}/>
+                        </form>
+                    </>
                 )}
                 {action === "signUp" && (
-                    <form onSubmit={onSubmit}>
-                        <Input placeholder = {"FirstName"} {...firstName} />
-                        <Input placeholder = {"LastName"} {...lastName} />
-                        <Input placeholder = {"email"} {...email} type="email" />
-                        <Input placeholder = {"UserName"} {...userName} />
-                        <Button text = {"Sign Up"} />
-                    </form> 
+                    <>
+                        <Helmet>
+                            <titl>Sign Up | Instagram</titl>
+                        </Helmet>
+                        <form onSubmit={onSubmit}>
+                            <Input placeholder = {"FirstName"} {...firstName} />
+                            <Input placeholder = {"LastName"} {...lastName} />
+                            <Input placeholder = {"email"} {...email} type="email" />
+                            <Input placeholder = {"UserName"} {...userName} />
+                            <Button text = {"Sign Up"} />
+                        </form> 
+                    </>
                 )}
                 {action === "confirm" && (
-                    <form onSubmit={onSubmit}>
-                        <Input placeholder= {"your secret"} required {...secret} />
-                        <Button text ={"Confirm"}/>
-                    </form>
+                    <>
+                        <Helmet>
+                            <title>Confirm Secret | Instagram</title>
+                        </Helmet>
+                        <form onSubmit={onSubmit}>
+                            <Input placeholder= {"your secret"} required {...secret} />
+                            <Button text ={"Confirm"}/>
+                        </form>
+                    </>
                 )}
             </Form>
             {action !== "confirm" && (

@@ -4,7 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import {gql} from "apollo-boost";
 import Input from "./input";
 import useInput from "../Hooks/useInput";
-import {Compass, HeartEmpty,User ,Comment, Home} from "./Icons";
+import {Compass, HeartEmpty,User ,Airplane, Home} from "./Icons";
 import { useQuery } from "@apollo/react-hooks";
 
 const Header = styled.header`
@@ -18,6 +18,7 @@ const Header = styled.header`
    justify-content: center;
    align-items: center;
    padding: 12px 0px;
+   z-index: 2;
 `;
 
 const HeaderWrapper = styled.div`
@@ -86,7 +87,7 @@ export default withRouter(({history}) => {
         <Header>
             <HeaderWrapper>
                 <HeaderColumn>
-                    <Link to ="/main">
+                    <Link to ="/#">
                         Instagram
                     </Link>
                 </HeaderColumn>
@@ -100,7 +101,7 @@ export default withRouter(({history}) => {
                         <Home/>             
                     </HeaderLink>
                     <HeaderLink to ="/message">
-                        <Comment />
+                        <Airplane />
                     </HeaderLink>
                     <HeaderLink to ="/explore">
                         <Compass/>             
