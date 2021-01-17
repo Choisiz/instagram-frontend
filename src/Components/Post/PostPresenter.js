@@ -14,6 +14,7 @@ const Post =styled.div`
     width: 100%;
     max-width: 600px;
     margin-bottom: 60px;
+    user-select: none;
 `;
 
 const Header =styled.div`
@@ -118,7 +119,7 @@ const settings = { //Slider setting
     prevArrow: <PrevArrow />
   };
 
-export default ( {user: {userName, avatar}, location, files, isLiked, likeCount, createdAt, newComment,}) => (
+export default ( {user: {userName, avatar}, location, files, isLiked, likeCount, createdAt, newComment,toggleLike}) => (
     <Post>
         <Header>
             <Avatar size="sm" url={avatar} />
@@ -134,7 +135,9 @@ export default ( {user: {userName, avatar}, location, files, isLiked, likeCount,
         
         <Meta>
             <Buttons>
-                <Button>{isLiked ? <HeartFull/> : <HeartEmpty/>}</Button>
+                <Button onClick={toggleLike}>
+                  {isLiked ? <HeartFull/> : <HeartEmpty/>}
+                </Button>
                 <Button><Comment/></Button>
                 <Button><Airplane/></Button>
             </Buttons>
