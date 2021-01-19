@@ -4,8 +4,10 @@ import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE,ADD_COMMENT } from "./PostQueries";
+import { useQuery } from "@apollo/react-hooks";
 import { isApolloError } from "apollo-boost";
 import { toast } from "react-toastify";
+import { ME } from "../../SharedQueries";
 
 const PostContainer = ({
     id, user, location, caption, files, likeCount, isLiked, comments, createdAt 
@@ -13,7 +15,8 @@ const PostContainer = ({
     const [isLikedState, setIsLiked] =useState(isLiked);
     const [likeCountState, setLikeCount] =useState(likeCount);
     const comment = useInput(""); //코멘트 남기기(댓글)
-    
+    const {data} = useQuery(ME);
+    const [selfComments, setSelfComments] =useState([]);
     const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
         variables: {postId: id}
     });
@@ -24,7 +27,7 @@ const PostContainer = ({
         }
     });
 
-    const toggleLike = () => {
+    const toggleLike = () => { //좋아요
         toggleLikeMutation();
         if(isLikedState === true){
             setIsLiked(false);
@@ -32,6 +35,20 @@ const PostContainer = ({
         }else {
             setIsLiked(true);
             setLikeCount(likeCountState + 1);
+        }
+    };
+
+    const onKeyPress = async(e) => { //눌럿다 땠을때
+        const {which} = e;
+        if(which === 13){ //엔터코드
+            e.preventDefault();
+            try{
+                const {data:{addComment}} =await addCommentMutation();
+                setSelfComments([...selfComments, addComment]);
+                comment.setValue("");
+            } catch{
+                toast.error("오류가 발생했습니다.");
+            }
         }
     };
 
@@ -49,6 +66,8 @@ const PostContainer = ({
             setIsLiked = {setIsLiked}
             setLikeCount ={setLikeCount}
             toggleLike={toggleLike}
+            onKeyPress={onKeyPress}
+            selfComments={selfComments}
         />
     );
 };

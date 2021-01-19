@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 
 const getSize = size => {
     let number;
-    if(size === "sm" ){
+    if(size === "vsm" ){
+        number = 20;
+    }else if(size === "sm" ){
         number = 30;
     }else if(size === "md" ){
         number = 50;
-    }else if(size === "lg" ){
+    }else if(size === "lg"){
         number = 150;
     }
     return `

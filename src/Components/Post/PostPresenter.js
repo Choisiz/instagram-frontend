@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Avatar from "../Avatar";
-import { HeartEmpty, HeartFull, Comment, Airplane } from "../Icons";
+import { HeartEmpty, HeartFull, CommentIcon, Airplane } from "../Icons";
 import FatText from "./Fat.Text";
 import TextareaAutosize from 'react-autosize-textarea';
 import Slider from "react-slick";
@@ -77,6 +77,15 @@ const Textarea = styled(TextareaAutosize)`
             outline: none;
         }
 `; //댓글
+const Comments = styled.ul`
+    margin-top: 10px;
+`;
+const Comment = styled.li`
+    margin-bottom: 7px;
+    span {
+      margin-right: 5px;
+    }
+`;
 
 const NextArrow =(props) => { //사진 넘기기
     const { className, style, onClick } = props;
@@ -108,6 +117,7 @@ const PrevArrow =(props) => { //사진 뒤로
     );
   }
 
+
 const settings = { //Slider setting
     dots: true,
     infinite: false,
@@ -119,7 +129,19 @@ const settings = { //Slider setting
     prevArrow: <PrevArrow />
   };
 
-export default ( {user: {userName, avatar}, location, files, isLiked, likeCount, createdAt, newComment,toggleLike}) => (
+export default ( {
+  user: {userName, avatar},
+  location,
+  files,
+  isLiked,
+  likeCount,
+  createdAt,
+  newComment,
+  toggleLike,
+  onKeyPress,
+  comments,
+  selfComments
+}) => (
     <Post>
         <Header>
             <Avatar size="sm" url={avatar} />
@@ -138,12 +160,33 @@ export default ( {user: {userName, avatar}, location, files, isLiked, likeCount,
                 <Button onClick={toggleLike}>
                   {isLiked ? <HeartFull/> : <HeartEmpty/>}
                 </Button>
-                <Button><Comment/></Button>
+                <Button><CommentIcon/></Button>
                 <Button><Airplane/></Button>
             </Buttons>
             <FatText text= { `좋아요 ${likeCount}개`} />
+            {comments && (
+              <Comments>
+                {comments.map( comment => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.userName} />
+                    {comment.text}
+                  </Comment>
+                ))}
+                {selfComments.map( comment => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.userName} />
+                    {comment.text}
+                  </Comment>
+                ))}
+              </Comments>
+            )}
             <Timestamp>{createdAt}</Timestamp>
-            <Textarea placeholder={"댓글 달기"}{...newComment}/>
+            <Textarea
+                onKeyPress={onKeyPress}
+                placeholder={"댓글 달기"}
+                value ={newComment.value}
+                onChange= {newComment.onChange} 
+            />
         </Meta>
     </Post>
 );
