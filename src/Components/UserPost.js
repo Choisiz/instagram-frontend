@@ -5,6 +5,7 @@ import Avatar from "./Avatar";
 import FatText from "./FatText";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import FollowButton from "./FollowButton";
 
 const Post = styled.div`
     ${props => props.theme.whiteBox}
@@ -23,17 +24,18 @@ const ELink = styled(Link)`
     margin-bottom: 15px;
 `;
 
-const UserPost = ({userName, isFollowing, url, isSelf}) => (
+const UserPost = ({id,userName, isFollowing, url, isSelf}) => (
     <Post>
         <EAvatar url={url} size={"md"}/>
         <ELink to={`/${userName}`}>
             <FatText text ={userName}/>
         </ELink>
-        {!isSelf && <Button text={isFollowing ? "팔로우" : "팔로잉"} /> }
+        {!isSelf && <FollowButton id={id} isFollowing={isFollowing}/> }
     </Post>
 );
 
 UserPost.propTypes = {
+    id: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,
     isFollowing: PropTypes.bool.isRequired,
     url: PropTypes.string.isRequired,
