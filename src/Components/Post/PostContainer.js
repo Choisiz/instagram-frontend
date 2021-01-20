@@ -5,7 +5,6 @@ import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE,ADD_COMMENT } from "./PostQueries";
 import { useQuery } from "@apollo/react-hooks";
-import { isApolloError } from "apollo-boost";
 import { toast } from "react-toastify";
 import { ME } from "../../SharedQueries";
 

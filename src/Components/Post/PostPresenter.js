@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Avatar from "../Avatar";
 import { HeartEmpty, HeartFull, CommentIcon, Airplane } from "../Icons";
-import FatText from "./Fat.Text";
+import FatText from "../FatText";
 import TextareaAutosize from 'react-autosize-textarea';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
