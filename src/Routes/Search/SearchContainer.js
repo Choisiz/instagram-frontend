@@ -5,13 +5,15 @@ import SearchPresenter from "./SearchPresenter";
 import {SEARCH} from "./SearchQueries";
 
 export default withRouter(( {location: {search}} ) => {
-    const term = search.split("=")[1];
+    
+    const term = decodeURI (search.split ( "=") [1]);
     const { data, loading } =useQuery(SEARCH, {
         skip: term === undefined,
         variables: {
             term
         }
     });
-    console.log(data);
-    return <SearchPresenter searchTerm={term} loading={loading} data={data}/>;
+    console.log(term);
+    console.log(data,loading);
+    return <SearchPresenter term={term} loading={loading} data={data}/>;
 });

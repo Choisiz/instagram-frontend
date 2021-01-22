@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FatText from "../../Components/FatText";
 import Loader from "../../Components/Loader";
 import UserPost from "../../Components/UserPost";
+import SquarePost from "../../Components/SquarePost";
 
 const Wrapper =styled.div`
     height: 50vh;
@@ -14,13 +15,13 @@ const Section =styled.div`
     margin-bottom: 20px;
     display: grid;
     grid-gap: 25px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 160px);
     gird-template-rows: 160px;
     gird-auto-rows: 160px;
 `;
 
-const SearchPresenter = ({searchTerm, loading, data}) => {
-    if(searchTerm === undefined){
+const SearchPresenter = ({term, loading, data}) => {
+    if(term === undefined){
         return (
             <Wrapper>
                 <FatText text={"찾을 수 없습니다."}/>
@@ -55,7 +56,13 @@ const SearchPresenter = ({searchTerm, loading, data}) => {
                     {data.searchPost.length === 0 ? (
                         <FatText text="게시물을 찾을 수 없습니다"/>
                     ) : (
-                        data.searchPost.map(post => null)
+                        data.searchPost.map(post => (
+                            <SquarePost 
+                                likeCount={post.likeCount}
+                                commentCount={post.commentCount}
+                                file={post.files[0]}
+                            />
+                        ))
                     )}
                 </Section>
             </Wrapper>
@@ -64,7 +71,7 @@ const SearchPresenter = ({searchTerm, loading, data}) => {
 };
 
 SearchPresenter.propTypes = {
-    searchTerm: PropTypes.string,
+    term: PropTypes.string,
     loading: PropTypes.bool
 };
 
