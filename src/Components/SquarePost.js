@@ -3,7 +3,10 @@ import styled from "styled-components";
 import PropTypes from 'prop-types';
 import { CommentIcon, HeartFull } from "./Icons";
 
-const Container = styled.div``;
+const Container = styled.div`
+    background-image: url(${props => props.bg});
+    background-size: cover;
+`;
 
 const Overlay = styled.div``;
 
@@ -12,7 +15,7 @@ const Contents = styled.div``;
 const Number =styled.span``;
 
 const SquarePost = ({likeCount, commentCount, file}) => (
-    <Container bg={file}>
+    <Container bg={file.url}>
         <Overlay>
             <Contents>
                 <HeartFull/>

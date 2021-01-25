@@ -34,6 +34,7 @@ const SearchPresenter = ({term, loading, data}) => {
             </Wrapper>
         );
     }else if(data && data.searchUser && data.searchPost){
+        
         return(
             <Wrapper>
                 <Section>
