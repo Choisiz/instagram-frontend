@@ -22,6 +22,7 @@ const FEED_QUERY = gql`
                 url
             }
             likeCount
+            commentCount
             isLiked
             comments {
                 id
@@ -60,6 +61,7 @@ export default () => {
                             user = {post.user}
                             files = {post.files}
                             likeCount = {post.likeCount}
+                            commentCount= {post.commentCount}
                             isLiked = {post.isLiked}
                             comments = {post.comments}
                             createdAt = {post.createdAt}

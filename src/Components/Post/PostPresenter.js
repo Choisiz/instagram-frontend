@@ -87,6 +87,30 @@ const Comment = styled.li`
     }
 `;
 
+const Caption = styled.div`
+  margin: 10px 0px;
+`;
+
+
+const Text = styled.span`
+    margin-top: 10px;
+    font-weight: 400;
+    opacity: 0.5;
+    cursor: pointer;
+`;
+
+const CountText =styled.div`
+   margin: 10px 0px;
+   display: flex;
+   flex-direction: column;
+`;
+
+const OnHideText = ({text, className}) => (
+    <Text className={className}>
+        {text}
+    </Text>
+);
+
 const NextArrow =(props) => { //사진 넘기기
     const { className, style, onClick } = props;
     return (
@@ -129,18 +153,23 @@ const settings = { //Slider setting
     prevArrow: <PrevArrow />
   };
 
+
+
+
 export default ( {
   user: {userName, avatar},
   location,
   files,
   isLiked,
   likeCount,
+  commentCount,
   createdAt,
   newComment,
   toggleLike,
   onKeyPress,
   comments,
-  selfComments
+  selfComments,
+  caption
 }) => (
     <Post>
         <Header>
@@ -163,21 +192,32 @@ export default ( {
                 <Button><CommentIcon/></Button>
                 <Button><Airplane/></Button>
             </Buttons>
+            <CountText>
             <FatText text= { `좋아요 ${likeCount}개`} />
+            <OnHideText text={`댓글${commentCount}개 모두보기`}>
+            </OnHideText>
+            </CountText>
+            <Caption>
+              <FatText text={userName}/> {caption}
+            </Caption>
+           
             {comments && (
               <Comments>
+
                 {comments.map( comment => (
                   <Comment key={comment.id}>
                     <FatText text={comment.user.userName} />
                     {comment.text}
                   </Comment>
                 ))}
+                
                 {selfComments.map( comment => (
                   <Comment key={comment.id}>
                     <FatText text={comment.user.userName} />
                     {comment.text}
                   </Comment>
                 ))}
+                
               </Comments>
             )}
             <Timestamp>{createdAt}</Timestamp>

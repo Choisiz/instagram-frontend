@@ -14,17 +14,20 @@ const Wrapper =styled.div`
 const Section =styled.div`
     margin-bottom: 20px;
     display: grid;
-    grid-gap: 25px;
-    grid-template-columns: repeat(4, 160px);
-    gird-template-rows: 160px;
-    gird-auto-rows: 160px;
 `;
 
-const SearchPresenter = ({term, loading, data}) => {
-    if(term === undefined){
+const PostSection = styled(Section)`
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 294px);
+    grid-template-rows: 294px;
+    grid-auto-rows: 294px;
+`;
+
+const SearchPresenter = ({searchTerm, loading, data}) => {
+    if(searchTerm === undefined){
         return (
             <Wrapper>
-                <FatText text={"찾을 수 없습니다."}/>
+                <FatText text={"Search for something"}/>
             </Wrapper>
         );
     }else if(loading === true){
@@ -34,12 +37,11 @@ const SearchPresenter = ({term, loading, data}) => {
             </Wrapper>
         );
     }else if(data && data.searchUser && data.searchPost){
-        
         return(
             <Wrapper>
                 <Section>
                     {data.searchUser.length === 0 ? (
-                        <FatText text={"유저를 찾을 수 없습니다."}/>
+                        <FatText text={"No User Found"}/>
                         ) : (
                         data.searchUser.map(user => (
                             <UserPost
@@ -53,26 +55,27 @@ const SearchPresenter = ({term, loading, data}) => {
                         ))
                     )}
                 </Section>
-                <Section>
+                <PostSection>
                     {data.searchPost.length === 0 ? (
-                        <FatText text="게시물을 찾을 수 없습니다"/>
+                        <FatText text="No photo Found"/>
                     ) : (
                         data.searchPost.map(post => (
-                            <SquarePost 
+                            <SquarePost
+                                key={post.id}
                                 likeCount={post.likeCount}
                                 commentCount={post.commentCount}
                                 file={post.files[0]}
                             />
                         ))
                     )}
-                </Section>
+                </PostSection>
             </Wrapper>
         );
     }
 };
 
 SearchPresenter.propTypes = {
-    term: PropTypes.string,
+    searchTerm: PropTypes.string,
     loading: PropTypes.bool
 };
 

@@ -1,20 +1,49 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from 'prop-types';
-import { CommentIcon, HeartFull } from "./Icons";
+import { CommentIconFull, HeartFull } from "./Icons";
+
+const Overlay = styled.div`
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    svg {
+        fill: white;
+    }
+`;
 
 const Container = styled.div`
     background-image: url(${props => props.bg});
     background-size: cover;
+    cursor: pointer;
+    &:hover {
+        ${Overlay} {
+            opacity: 1;
+        }
+    }
 `;
 
-const Overlay = styled.div``;
+const Contents = styled.div`
+    color: white;
+    display: flex;
+    align-items: center;
+    &:first-child {
+        margin-right: 20px;
+    }
+`;
 
-const Contents = styled.div``;
-
-const Number =styled.span``;
+const Number =styled.span`
+    margin-left: 10px;
+    font-size: 16px;
+`;
 
 const SquarePost = ({likeCount, commentCount, file}) => (
+    
     <Container bg={file.url}>
         <Overlay>
             <Contents>
@@ -22,7 +51,7 @@ const SquarePost = ({likeCount, commentCount, file}) => (
                 <Number>{likeCount}</Number>
             </Contents>
             <Contents>
-                <CommentIcon/>
+                <CommentIconFull/>
                 <Number>{commentCount}</Number>
             </Contents>
         </Overlay>
@@ -32,7 +61,6 @@ const SquarePost = ({likeCount, commentCount, file}) => (
 SquarePost.propTypes ={
     likeCount: PropTypes.number.isRequired,
     commentCount: PropTypes.number.isRequired,
-    file: PropTypes.string.isRequired
 }
 
 export default SquarePost;

@@ -15,6 +15,9 @@ export const ADD_COMMENT = gql`
                 userName
                 avatar
             }
+            post{
+                commentCount
+            }
         }
     }
 `;

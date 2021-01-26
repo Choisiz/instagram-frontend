@@ -4,17 +4,15 @@ import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE,ADD_COMMENT } from "./PostQueries";
-import { useQuery } from "@apollo/react-hooks";
 import { toast } from "react-toastify";
-import { ME } from "../../SharedQueries";
 
 const PostContainer = ({
-    id, user, location, caption, files, likeCount, isLiked, comments, createdAt 
+    id, user, post, files, location, caption, commentCount,  likeCount, isLiked, comments, createdAt 
     }) => {
     const [isLikedState, setIsLiked] =useState(isLiked);
     const [likeCountState, setLikeCount] =useState(likeCount);
+   
     const comment = useInput(""); //코멘트 남기기(댓글)
-    const {data} = useQuery(ME);
     const [selfComments, setSelfComments] =useState([]);
     const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
         variables: {postId: id}
@@ -36,6 +34,8 @@ const PostContainer = ({
             setLikeCount(likeCountState + 1);
         }
     };
+    
+    
 
     const onKeyPress = async(e) => { //눌럿다 땠을때
         const {which} = e;
@@ -54,10 +54,12 @@ const PostContainer = ({
     return (
         <PostPresenter 
             user = {user}
+            post = {post}
             location = {location}
             caption = {caption}
             files = {files}
             likeCount = {likeCountState}
+            commentCount ={commentCount}
             isLiked = {isLikedState}
             comments = {comments}
             createdAt = {createdAt}
@@ -81,12 +83,19 @@ PostContainer.propTypes = {
         userName: PropTypes.string.isRequired
     }).isRequired,
 
+    post: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        commentCount: PropTypes.number.isRequired
+    }),
+
     files: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
         })
     ).isRequired,
+
+    commentCount: PropTypes.number.isRequired,
 
     likeCount: PropTypes.number.isRequired,
 
