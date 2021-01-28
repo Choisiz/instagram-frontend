@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import FatText from "../../Components/FatText";
 import Loader from "../../Components/Loader";
 import UserPost from "../../Components/UserPost";
-import SquarePost from "../../Components/SquarePost";
+import {SquarePost} from "../../Components/SquarePost";
 
 const Wrapper =styled.div`
     height: 50vh;
@@ -64,7 +64,7 @@ const SearchPresenter = ({searchTerm, loading, data}) => {
                                 key={post.id}
                                 likeCount={post.likeCount}
                                 commentCount={post.commentCount}
-                                file={post.files[0]}
+                                files={post.files[0]}
                             />
                         ))
                     )}

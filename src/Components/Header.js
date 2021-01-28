@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { ME } from "../SharedQueries";
 
 const Header = styled.header`
+   position: fixed;
    width: 100%;
    border: 0;
    background-color: white;
@@ -35,10 +36,11 @@ const HeaderWrapper = styled.div`
 `;
 
 const HeaderColumn = styled.div`
-   width: 33%;
+   
    text-align: center;
    &:first-child {
        margin-right: auto;
+       margin-left: 20px;
        text-align: left;
    }
    &:last-child { 
@@ -54,10 +56,14 @@ const SearchInput = styled(Input)`
     border-radius: 3px;
     height: auto;
     text-align: center;
-    width: 80%;
+    margin-left: 33px;
+    width: 100%;
     &::placeholder {
         opacity: 0.8;
         font-weight: 200;
+    }
+    @media screen and (max-width: 650px) {
+         display: none;
     }
 `;
 

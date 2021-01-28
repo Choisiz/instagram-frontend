@@ -18,7 +18,7 @@ const Overlay = styled.div`
 `;
 
 const Container = styled.div`
-    background-image: url(${props => props.bg});
+    background-image: url(${props => props.src});
     background-size: cover;
     cursor: pointer;
     &:hover {
@@ -26,6 +26,17 @@ const Container = styled.div`
             opacity: 1;
         }
     }
+`;
+
+const Cky =styled.div`
+width: 100%;
+display: grid;
+grid-gap: 30px;
+grid-template-columns: repeat(3, 294px);
+grid-template-rows: 294px;
+grid-auto-rows: 294px;
+border-top: 1px solid rgba(var(--b38,219,219,219),1);
+padding-top: 53px;
 `;
 
 const Contents = styled.div`
@@ -42,9 +53,9 @@ const Number =styled.span`
     font-size: 16px;
 `;
 
-const SquarePost = ({likeCount, commentCount, file}) => (
-    
-    <Container bg={file.url}>
+
+export const SquarePost = ({likeCount, commentCount, files}) => (
+    <Container src={files.url}>
         <Overlay>
             <Contents>
                 <HeartFull/>
@@ -58,9 +69,28 @@ const SquarePost = ({likeCount, commentCount, file}) => (
     </Container>
 )
 
+export const ProfilePost = ({likeCount, commentCount, files}) => (
+    <Cky>
+    {files && files.map(file =>
+    <Container src={file.url}>
+        <Overlay>
+            <Contents>
+                <HeartFull/>
+                <Number>{likeCount}</Number>
+            </Contents>
+            <Contents>
+                <CommentIconFull/>
+                <Number>{commentCount}</Number>
+            </Contents>
+        </Overlay>
+    </Container>
+    )}
+    </Cky>
+)
+
+
 SquarePost.propTypes ={
     likeCount: PropTypes.number.isRequired,
     commentCount: PropTypes.number.isRequired,
+    file: PropTypes.object.isRequired
 }
-
-export default SquarePost;
