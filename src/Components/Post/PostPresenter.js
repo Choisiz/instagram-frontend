@@ -22,6 +22,7 @@ const Post =styled.div`
 `;
 
 const Header =styled.div`
+     
     padding: 15px;
     display: flex;
 `; //Post Header부분

@@ -8,7 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { ME } from "../SharedQueries";
 
 const Header = styled.header`
-   position: fixed;
+   
    width: 100%;
    border: 0;
    background-color: white;
