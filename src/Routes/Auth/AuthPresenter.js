@@ -33,16 +33,20 @@ const Form = styled(Box)`
     margin-bottom: 15px;
     form {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         justify-content: center;
         input{
             width: 100%;
             &:not(last-child) {
-            margin-bottom: 7px;
+                margin-bottom: 7px;
+            }
         }
-    }
-    button {
-        margin-top: 10px;
+        button {
+            margin-top: 10px;
+            }
         }
-    }
 `;
 
 const AuthPresenter = ({
