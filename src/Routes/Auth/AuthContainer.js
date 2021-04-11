@@ -3,7 +3,8 @@ import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
 import {useMutation} from "@apollo/client";
 import {CONFIRM_SECRET, CREATE_ACCOUNT, LOCAL_LOG_IN, LOG_IN} from "./AuthQueries";
-import {toast} from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContainer = () => {
     const [action, setAction] = useState("Login");
@@ -39,7 +40,6 @@ const AuthContainer = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if (action === "Login") { //로그인 페이지일시
-
             if (email.value !== "") { //메일을 작성했다면
                 try {
                     const {data: {
@@ -53,9 +53,10 @@ const AuthContainer = () => {
                         setAction("confirm");
                     }
                 } catch  {
-                    toast.error("다시 시도해주세요");
+                    toast("다시 시도해주세요");
                 }
             } else {
+                console.log("dddd");
                 toast.error("이메일을 입력해주세요");
             }
 
