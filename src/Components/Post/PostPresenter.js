@@ -200,40 +200,13 @@ export default ( {
                 <Button><Airplane/></Button>
             </Buttons>
             <CountText>
-            <FatText text= { `좋아요 ${likeCount}개`} />
-            <OnHideText text={`댓글${commentCount}개 모두보기`}>
-            </OnHideText>
+                <FatText text= { `좋아요 ${likeCount}개`} />
+                <OnHideText text={`댓글${commentCount}개 모두보기`}></OnHideText>
             </CountText>
             <Caption>
               <FatText text={userName}/> {caption}
             </Caption>
-           
-            {comments && (
-              <Comments>
-
-                {comments.map( comment => (
-                  <Comment key={comment.id}>
-                    <FatText text={comment.user.userName} />
-                    {comment.text}
-                  </Comment>
-                ))}
-                
-                {selfComments.map( comment => (
-                  <Comment key={comment.id}>
-                    <FatText text={comment.user.userName} />
-                    {comment.text}
-                  </Comment>
-                ))}
-                
-              </Comments>
-            )}
-            <Timestamp>{createdAt}</Timestamp>
-            <Textarea
-                onKeyPress={onKeyPress}
-                placeholder={"댓글 달기"}
-                value ={newComment.value}
-                onChange= {newComment.onChange} 
-            />
+            <Comment/>
         </Meta>
     </Post>
 );
