@@ -45,16 +45,16 @@ const File = styled.div`
   background-position: center;
 `; //파일
 
-const Button = styled.span`
-    margin-right: 10px;
-    cursor: pointer;
-`;
-
-const ModalCommemt =styled.span`
+const ModalOpen =styled.span`
     margin-top: 10px;
     font-weight: 400;
     opacity: 0.5;
     cursor: pointer;  
+`;
+
+const Button = styled.span`
+    margin-right: 10px;
+    cursor: pointer;
 `;
 
 
@@ -99,6 +99,8 @@ const Comment = styled.li`
     span {
       margin-right: 5px;
     }
+    display:flex;
+    align-items: center;
 `;
 
 const Caption = styled.div`
@@ -109,6 +111,47 @@ const CountText =styled.div`
    margin: 10px 0px;
    display: flex;
    flex-direction: column;
+`;
+
+const ModalContainer = styled.div`
+    display: flex;
+`;
+
+const ModalFile = styled.div`
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+`;
+
+const ModalContent = styled.div`
+   width: 40%;
+   list-style:none;
+   padding: 10px;
+   margin-left: 15px;
+`;
+
+const ModalAvatar =styled.div`
+    display:flxed;
+    padding-bottom: 20px;
+    border-bottom: #B2B2B2 1px solid;
+`;
+
+const ModalComment = styled.li`
+    margin: 15px 0px 40px 0px;
+    span {
+      margin-right: 10px;
+    }
+    display:flex;
+    align-items: center;
+`;
+
+const ModalComments =styled.div`
+    overflow: scroll;
+    height:600px;
+    width: 330px;
+    ::-webkit-scrollbar{
+      display: none;
+    }
 `;
 
 const NextArrow =(props) => { //사진 넘기기
@@ -185,6 +228,7 @@ export default ( {
         </Header>
         
         <Slider {...settings}>
+             {console.log("f",files)}
             {files && files.map(file => <File key={file.id} src={file.url}/>)} 
         </Slider>
         
@@ -198,32 +242,66 @@ export default ( {
             </Buttons>
             <CountText>
                 <FatText text= { `좋아요 ${likeCount}개`} />
-                <ModalCommemt onClick={modalChange}>
+                <ModalOpen onClick={modalChange}>
                   {`댓글${commentCount}개 모두보기`}
-                </ModalCommemt>
+                </ModalOpen>
                 <Modal 
-                    isOpen={modalOpen}
-                    onRequestClose={modalClose}
-                    style={{
-                      overlay:{backgroundColor: "rgba( 255, 255, 255, 0.5 )"},
-                      content: {top: '18%',left: '25%',width: '50%',height: '60%'}
-                    }}
+                  isOpen={modalOpen}
+                  onRequestClose={modalClose}
+                  style={{
+                    overlay:{backgroundColor: "rgba( 255, 255, 255, 0.5 )"},
+                    content: {
+                      top: '18%',
+                      left: '25%',
+                      width: '50%',
+                      height: '60%',
+                      padding: '0px',
+                      maxHeight: '650px',
+                      overflow: 'hidden'
+                    },
+                  }}
                 >
-
+                  <ModalContainer>
+                    <ModalFile>
+                      <Slider {...settings}>
+                        {files && files.map(file => <File key={file.id} src={file.url}/>)}
+                      </Slider>
+                    </ModalFile>
+                    <ModalContent>
+                      <ModalAvatar>
+                          <Avatar size="sm" url={avatar}/>
+                        <UserColumn>
+                          <Link to ={`/${userName}`}>
+                            <FatText text={userName}/>
+                          </Link>
+                          <Location>{location}</Location>
+                        </UserColumn>
+                      </ModalAvatar>
+                      <ModalComments>
+                    {comments.map(comment => (
+                      <ModalComment key={comment.id}>
+                        <Avatar size="sm" url={avatar} />
+                        <FatText text={comment.user.userName} />
+                        {comment.text}
+                      </ModalComment>
+                    ))}
+                    </ModalComments>
+                    </ModalContent>
+                  </ModalContainer>
                 </Modal>
             </CountText>
             <Caption>
               <FatText text={userName}/> {caption}
             </Caption>
             {comments && (
+              
               <Comments>
-                {comments.map(comment => (
-                  <Comment key={comment.id}>
-                    <FatText text={comment.user.userName} />
-                    {comment.text}
-                  </Comment>
-                ))}
-          
+                {comments.length > 2 ? (
+                  <Comment key={comments[comments.length-1].id}>
+                    <FatText text={comments[comments.length-1].user.userName} />
+                    {comments[comments.length-1].text}
+                  </Comment>) : ("")
+                }
                 {newComments.map(comment => (
                   <Comment key={comment.id}>
                     <FatText text={comment.user.userName} />
