@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
 import Avatar from "../Avatar";
 import {Link} from "react-router-dom";
@@ -8,7 +8,8 @@ import TextareaAutosize from 'react-autosize-textarea';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Modal from "react-modal";
+Modal.setAppElement('#root');
 
 const Post =styled.div`
     ${props => props.theme.whiteBox}
@@ -48,6 +49,14 @@ const Button = styled.span`
     margin-right: 10px;
     cursor: pointer;
 `;
+
+const ModalCommemt =styled.span`
+    margin-top: 10px;
+    font-weight: 400;
+    opacity: 0.5;
+    cursor: pointer;  
+`;
+
 
 const Meta = styled.div`
     padding: 15px;
@@ -96,25 +105,11 @@ const Caption = styled.div`
   margin: 10px 0px;
 `;
 
-
-const Text = styled.span`
-    margin-top: 10px;
-    font-weight: 400;
-    opacity: 0.5;
-    cursor: pointer;
-`;
-
 const CountText =styled.div`
    margin: 10px 0px;
    display: flex;
    flex-direction: column;
 `;
-
-const OnHideText = ({text, className}) => (
-    <Text className={className}>
-        {text}
-    </Text>
-);
 
 const NextArrow =(props) => { //사진 넘기기
     const { className, style, onClick } = props;
@@ -146,7 +141,6 @@ const PrevArrow =(props) => { //사진 뒤로
     );
   }
 
-
 const settings = { //Slider setting
     dots: true,
     infinite: false,
@@ -173,8 +167,11 @@ export default ( {
   toggleLike,
   onKeyPress,
   comments,
-  selfComments,
-  caption
+  newComments,
+  caption,
+  modalChange,
+  modalOpen,
+  modalClose
 }) => (
     <Post>
         <Header>
@@ -201,12 +198,47 @@ export default ( {
             </Buttons>
             <CountText>
                 <FatText text= { `좋아요 ${likeCount}개`} />
-                <OnHideText text={`댓글${commentCount}개 모두보기`}></OnHideText>
+                <ModalCommemt onClick={modalChange}>
+                  {`댓글${commentCount}개 모두보기`}
+                </ModalCommemt>
+                <Modal 
+                    isOpen={modalOpen}
+                    onRequestClose={modalClose}
+                    style={{
+                      overlay:{backgroundColor: "rgba( 255, 255, 255, 0.5 )"},
+                      content: {top: '18%',left: '25%',width: '50%',height: '60%'}
+                    }}
+                >
+
+                </Modal>
             </CountText>
             <Caption>
               <FatText text={userName}/> {caption}
             </Caption>
-            <Comment/>
+            {comments && (
+              <Comments>
+                {comments.map(comment => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.userName} />
+                    {comment.text}
+                  </Comment>
+                ))}
+          
+                {newComments.map(comment => (
+                  <Comment key={comment.id}>
+                    <FatText text={comment.user.userName} />
+                    {comment.text}
+                  </Comment>
+                ))}
+              </Comments>
+            )}
+            <Timestamp>{createdAt}</Timestamp>
+            <Textarea
+              onKeyPress={onKeyPress}
+              placeholder={"댓글 달기"}
+              value ={newComment.value}
+              onChange= {newComment.onChange} 
+            />
         </Meta>
     </Post>
 );

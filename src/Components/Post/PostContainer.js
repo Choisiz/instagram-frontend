@@ -5,7 +5,6 @@ import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
 import { TOGGLE_LIKE,ADD_COMMENT } from "./PostQueries";
 import { toast } from "react-toastify";
-
 const PostContainer = ({
     id, user, post, files, location, caption, commentCount,  likeCount, isLiked, comments, createdAt 
     }) => {
@@ -13,7 +12,7 @@ const PostContainer = ({
     const [likeCountState, setLikeCount] =useState(likeCount);
    
     const comment = useInput(""); //코멘트 남기기(댓글)
-    const [selfComments, setSelfComments] =useState([]);
+    const [newComments, setNewComments] =useState([]);
     const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
         variables: {postId: id}
     });
@@ -23,6 +22,20 @@ const PostContainer = ({
             text: comment.value
         }
     });
+
+    const [modalOpen, setModelOpen] =useState(false);
+    
+    const modalChange = () => { //모달창열기
+        if(modalOpen === false){
+            setModelOpen(true);
+        }else{
+            setModelOpen(true);
+        }
+    }
+
+    const modalClose =() => { //모달창 닫기
+        setModelOpen(false);
+    }
 
     const toggleLike = () => { //좋아요
         toggleLikeMutation();
@@ -38,12 +51,14 @@ const PostContainer = ({
     
 
     const onKeyPress = async(e) => { //눌럿다 땠을때
+        
         const {which} = e;
+        console.log(e.which);
         if(which === 13){ //엔터코드
             e.preventDefault();
             try{
                 const {data:{addComment}} =await addCommentMutation();
-                setSelfComments([...selfComments, addComment]);
+                setNewComments([...newComments, addComment]);
                 comment.setValue("");
             } catch{
                 toast.error("오류가 발생했습니다.");
@@ -68,7 +83,10 @@ const PostContainer = ({
             setLikeCount ={setLikeCount}
             toggleLike={toggleLike}
             onKeyPress={onKeyPress}
-            selfComments={selfComments}
+            newComments={newComments}
+            modalChange={modalChange}
+            modalOpen={modalOpen}
+            modalClose={modalClose}
         />
     );
 };
