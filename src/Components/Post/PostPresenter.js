@@ -154,6 +154,10 @@ const ModalComments =styled.div`
     }
 `;
 
+const Forspacing = styled.div`
+    margin-right: 10px;
+`;
+
 const NextArrow =(props) => { //사진 넘기기
     const { className, style, onClick } = props;
     return (
@@ -280,7 +284,9 @@ export default ( {
                       <ModalComments>
                     {comments.map(comment => (
                       <ModalComment key={comment.id}>
-                        <Avatar size="sm" url={avatar} />
+                        <Forspacing>
+                          <Avatar size="sm" url={avatar}/>
+                        </Forspacing>
                         <FatText text={comment.user.userName} />
                         {comment.text}
                       </ModalComment>
