@@ -208,7 +208,6 @@ export default ({
     <Slider {...settings}>
       {" "}
       {/* 사진 */}
-      {console.log("f", files)}
       {files && files.map((file) => <File key={file.id} src={file.url} />)}
     </Slider>
 
@@ -221,7 +220,7 @@ export default ({
         <Button onClick={toggleLike}>
           {isLiked ? <HeartFull /> : <HeartEmpty />}
         </Button>
-        <Button>
+        <Button onClick={modalChange}>
           <CommentIcon />
         </Button>
         <Button>
@@ -280,7 +279,7 @@ export default ({
                 {comments.map((comment) => (
                   <ModalComment key={comment.id}>
                     <Forspacing>
-                      <Avatar size="sm" url={avatar} />
+                      <Avatar size="sm" url={comment.user.avatar} />
                     </Forspacing>
                     <FatText text={comment.user.userName} />
                     {comment.text}
@@ -298,7 +297,6 @@ export default ({
       </Caption>
       {comments && ( //댓글(최신댓글 1개만 Open)
         <Comments>
-          {console.log(comments)}
           {comments.length > 2 ? (
             <Comment key={comments[comments.length - 1].id}>
               <FatText text={comments[comments.length - 1].user.userName} />

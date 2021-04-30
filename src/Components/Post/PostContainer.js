@@ -21,7 +21,6 @@ const PostContainer = ({
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [likeCountState, setLikeCount] = useState(likeCount);
   const comment = useInput(""); //코멘트 남기기(댓글)
-  console.log("댓", comment);
   const [newComments, setNewComments] = useState([]);
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: { postId: id },
@@ -65,7 +64,6 @@ const PostContainer = ({
     //눌럿다 땠을때
 
     const { which } = e;
-    console.log(e.which);
     if (which === 13) {
       //엔터코드
       e.preventDefault();
