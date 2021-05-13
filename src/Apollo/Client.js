@@ -3,8 +3,8 @@ import { defaults, resolvers } from "./LocalState";
 
 export default new ApolloClient({
   uri:
-    process.env.NODE_ENV === "production"
-      ? "https://instagramcky-backend.herokuapp.com/"
+    process.env.NODE_ENV === "development"
+      ? "https://instagramcky-backend.herokuapp.com"
       : "http://localhost:4000",
   clientState: {
     defaults,
