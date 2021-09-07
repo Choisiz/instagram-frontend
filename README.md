@@ -3,9 +3,9 @@
 ## :link: SITE LINK
 
 ### https://instagramc.netlify.app/#/
+
 본 사이트를 이용하기 위해서는 회원가입을 하고 검색란에 CKY를 팔로잉하시면 됩니다.
 무료서버로 운영되기에 첫 로딩시 다소 시간이 소요 될 수있습니다.
-
 
 ## :muscle: STACK
 
@@ -27,7 +27,6 @@
 > heroku, netlify를 사용한 호스팅
 
 ## :large_blue_circle: 기능
-
 
 ✅JWT,Passport를 통한 로그인,회원가입
 ✅Local Storage저장으로 접속시 마다 로그인 불필요
