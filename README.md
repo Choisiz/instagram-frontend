@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 프로젝트명: 인스타그램(pc)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :link: SITE LINK
 
-## Available Scripts
+### https://instagramc.netlify.app/#/
+본 사이트를 이용하기 위해서는 회원가입을 하고 검색란에 CKY를 팔로잉하시면 됩니다.
+무료서버로 운영되기에 첫 로딩시 다소 시간이 소요 될 수있습니다.
 
-In the project directory, you can run:
 
-### `yarn start`
+## :muscle: STACK
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+> React를 사용한 프론트 엔드 기능구현
 
-### `yarn test`
+> Styled-components를 사용한 스타일링
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> GraphQL, Apollo,Prisma를 사용한 백엔드 구현
 
-### `yarn build`
+> JWT, Passport를 사용한 인증 기능구현
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> heroku, netlify를 사용한 호스팅
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :large_blue_circle: 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+✅JWT,Passport를 통한 로그인,회원가입
+✅Local Storage저장으로 접속시 마다 로그인 불필요
+✅작성된 포스터 게시물 보기
+✅팔로잉한 유저의 포스터 게시물 보기
+✅좋아요하기, 좋아요 카운트
+✅댓글보기 및 작성(Modal)
+✅회원검색 및 게시물 검색
+✅프로필 보기
+✅팔로잉, 팔로우하기
+✅heroku, netlify를 통한 배포
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## :red_circle: PRIVIEW
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![img.gif](readmeGif/gif1.gif)
+![img.gif](readmeGif/gif2.gif)
+![img.gif](readmeGif/gif3.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## :large_blue_circle: 설명
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+개인 블로그형 사이트 프로젝트입니다. 기본적으로 모든 포스트를 스크롤 형태로 열람 가능하며
+각 포스트는 클릭시 상세 보기가 가능합니다.
+개인 블로그의 초점이 맞춰져 있기 때문에 권한이 있는 관리자만 포스트 작성이 가능하며,
+일반적인 회원은 회원가입을 통해서 댓글작성이 가능합니다.
+포스트 작성은 CKEdit5를 이용하여 보다 손쉽게 글을 작성 하도록 하였으며 사진,동영상 저장은
+AWS S3를 통하여 데이터를 관리 하도록 하였습니다.
+각 포스트에 카테고리 태그를 할당하여 카테고리를 클릭시 카테고리별 포스트를 열람 가능하며,
+검색기능 또한 추가하여 대소문 상관없이 포스트 제목을 통한 검색이 가능하도록 하였습니다.
+로그인 후 프로필 수정을 클릭시 비밀번호 또한 변경을 가능하도록 하였습니다.
+전체적으로 프론트 구성은 React와 redux, bootstrap4를 통해 구현하였으며,
+이와 상호작용하는 백엔드는 Node.js의 express를 통해 구현하였습니다.
+DB부분은 MongoDB의 Mongoose를 통해 보다 데이터를 접근하여 구현하였습니다.
+배포는 AWS를 통해 배포를 진행하였습니다.
+```
