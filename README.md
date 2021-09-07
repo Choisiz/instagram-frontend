@@ -11,10 +11,10 @@
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Apollo-GraphQL](https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 > React를 사용한 프론트 엔드 기능구현
 
@@ -48,17 +48,17 @@
 ## :large_blue_circle: 설명
 
 ```
-개인 블로그형 사이트 프로젝트입니다. 기본적으로 모든 포스트를 스크롤 형태로 열람 가능하며
-각 포스트는 클릭시 상세 보기가 가능합니다.
-개인 블로그의 초점이 맞춰져 있기 때문에 권한이 있는 관리자만 포스트 작성이 가능하며,
-일반적인 회원은 회원가입을 통해서 댓글작성이 가능합니다.
-포스트 작성은 CKEdit5를 이용하여 보다 손쉽게 글을 작성 하도록 하였으며 사진,동영상 저장은
-AWS S3를 통하여 데이터를 관리 하도록 하였습니다.
-각 포스트에 카테고리 태그를 할당하여 카테고리를 클릭시 카테고리별 포스트를 열람 가능하며,
-검색기능 또한 추가하여 대소문 상관없이 포스트 제목을 통한 검색이 가능하도록 하였습니다.
-로그인 후 프로필 수정을 클릭시 비밀번호 또한 변경을 가능하도록 하였습니다.
-전체적으로 프론트 구성은 React와 redux, bootstrap4를 통해 구현하였으며,
-이와 상호작용하는 백엔드는 Node.js의 express를 통해 구현하였습니다.
-DB부분은 MongoDB의 Mongoose를 통해 보다 데이터를 접근하여 구현하였습니다.
-배포는 AWS를 통해 배포를 진행하였습니다.
+인스타그램 PC 웹사이트 입니다. 기본적으로 실제 인스타PC버전과 유사합니다.
+회원가입은 입력한 해당 메일로 랜덤한 비밀번호가 발송되며,
+회원가입후 인증여부를 거쳐 로그인을 하게 됩니다. 이후 로그인의 정보는 저장됩니다.
+PC버전과 동일하게 웹사이트에서는 기본적으로 포스트를 작성 할 수 없습니다.
+팔로잉과 팔로워를 할수 있으며, 여부에 따라서 해당 유저의 포스트를 스크롤형태로
+열람가능 하게 하였습니다.
+좋아요 또한 구현하여 카운트 횟수가 증가하게 하였습니다.
+댓글 기능 또한 구현하여 해당 댓글의 숫자와 댓글을 클릭시, 모달창을 통하여
+해당 포스트의 내용과, 댓글을 볼 수 있습니다.
+유저의 아바타, 혹은 이름을 클릭하여 해당유저의 포스터들을 열람하실 수 있습니다.
+전체적으로 구성은 React로 구현하였으며, Apollo GraphQL을 사용하여, 백엔드 서버와
+DB를 구현하였습니다.
+배포는 프론트정보는 netlify를 통해서 구현하였고, 최종적으로 heroku를 통해서 빌드 하였습니다.
 ```
